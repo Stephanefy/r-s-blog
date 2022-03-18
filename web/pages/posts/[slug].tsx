@@ -107,6 +107,8 @@ import { Article, BlogPostImageContainer } from "@components/Article";
 import imageUrlBuilder from '@sanity/image-url'
 import {PortableText} from '@portabletext/react'
 import styled from '@emotion/styled';
+import { devices } from 'utils/devices';
+
 
 import groq from 'groq'
 
@@ -208,7 +210,6 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
           value={body}
           components={ptComponents}
         />
-      </Article>
       <LikesList>
         <ul>
             <LikesListItem>
@@ -218,6 +219,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
                 </LikesListItem>
         </ul>
       </LikesList>
+      </Article>
     </div>
   )
 }
@@ -293,11 +295,16 @@ const TagLigtItem = styled.li`
 
 
 const LikesList = styled.aside`
-  position:fixed;
-  width: 300px;
-  height: 600px;
-  right: 5%;
-  bottom: 0;
+  position: static;
+  text-align: right;
+
+  @media ${devices.laptopL} {
+    position:fixed;
+    width: 300px;
+    height: 600px;
+    right: 20%;
+    bottom: 0;
+  }
 `
 
 const LikesListItem = styled.li`

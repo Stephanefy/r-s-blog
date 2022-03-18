@@ -15,45 +15,53 @@ interface NavBar{
   isOpen: boolean
 }
 const Container = styled.div`
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 const HeaderNav = styled.header`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff
     margin: auto;
+    width: 1200px;
+
     @media only screen and (max-width: 1170px) {
-      max-width: 700px;
+
+      position: fixed
+      top: 5%;
+      width: 100%;
+      background-color: #fff;
       justify-content: space-between;
       align-items: center;
       padding:0 2em;
+      z-index: 99;
 
     }
 `
 
 const NavBar = styled.nav<NavBar>`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    .nav-item {
-      margin-left: 5rem;
-    }
+    width: 100%;
+    margin: auto;
+
+
     @media only screen and (max-width: 1170px) {
           position: fixed;
           left: -100%;
-          top: 5rem;
+          top: 1rem;
+          height: 500px;
           flex-direction: column;
           background-color: #fff;
           width: 100%;
           border-radius: 10px;
           text-align: center;
-          transition: 0.2s;
-          box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+          transition: 0.1s;
           left: ${props => props.windowWidth < 1170 && props.isOpen && 0 };
 
         
@@ -66,8 +74,12 @@ const NavBar = styled.nav<NavBar>`
 const ListItem = styled.li`
     list-style-type: none;
     cursor: pointer;
-    font-size: 1.5em;
-    margin-left: 5rem;
+    margin:0 2em;
+    font-size: 1.25em;
+
+    &:nth-of-type(3) {
+        margin: 0 0 0 2em;
+    }
     &:hover {
         text-decoration: underline;
     }
@@ -79,14 +91,14 @@ const Hamburger = styled.div<HamburgerIsActive>`
       display: block;
       cursor: pointer;
 
-      & :nth-of-type(2) {
+      &:nth-of-type(2) {
         opacity: ${props => props.isOpen && 0};
       }
-      & :nth-of-type(1) {
+      &:nth-of-type(1) {
           transform: ${props => props.isOpen && 'translateY(8px) rotate(45deg)'};
       }
 
-      & :nth-of-type(3) {
+      &:nth-of-type(3) {
           transform: ${props => props.isOpen && 'translateY(-8px) rotate(-45deg)'};
       }
     }  
@@ -116,18 +128,18 @@ const navLinks = [
     },
     {
       id: 3,
-      name: "Voyages",
+      name: "旅行",
       path: "/travel",
     },
     // {
     //   name: "Blog",
     //   path: "/blog",
     // },
-    {
-      id:4,
-      name: "Contact",
-      path: "#contact",
-    },
+    // {
+    //   id:4,
+    //   name: "Contact",
+    //   path: "#contact",
+    // },
   ];
 
 
@@ -138,35 +150,39 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <HeaderNav>
-      <div className="brand" style={{cursor:'pointer'}}>
-        <Link href="/">
-          <h2>Lilly's blog</h2>
-        </Link>
-      </div>
-      <NavBar 
-        className="nav-menu"
-        windowWidth={width ? width : 0}
-        isOpen={isOpen}
-        >
-        {navLinks.map((link, index) => {
-          return (
-              <Link key={link.id} href={link.path} passHref>
-                <ListItem key={link.id} className="nav-item">{link.name}</ListItem>
-              </Link>
-          );
-        })}
-      </NavBar>
-      <Hamburger 
-        id="hamburger" 
-        windowWidth={width ? width : 0} 
-        isOpen={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
-        >
-        <Bar className="bar"/>
-        <Bar className="bar"/>
-        <Bar className="bar"/>
-      </Hamburger>
-    </HeaderNav>
+    <Container>
+      <HeaderNav>
+        <div className="brand" style={{cursor:'pointer'}}>
+          <Link href="/">
+            <h4>Lilly's blog</h4>
+          </Link>
+        </div>
+        <div>
+          <NavBar 
+            className="nav-menu"
+            windowWidth={width ? width : 0}
+            isOpen={isOpen}
+            >
+            {navLinks.map((link, index) => {
+              return (
+                  <Link key={link.id} href={link.path} passHref>
+                    <ListItem key={link.id} className="nav-item">{link.name}</ListItem>
+                  </Link>
+              );
+            })}
+          </NavBar>
+        </div>
+        <Hamburger 
+          id="hamburger" 
+          windowWidth={width ? width : 0} 
+          isOpen={isOpen}
+          onClick={() => setIsOpen(!isOpen)}
+          >
+          <Bar className="bar"/>
+          <Bar className="bar"/>
+          <Bar className="bar"/>
+        </Hamburger>
+      </HeaderNav>
+    </Container>
   );
 }

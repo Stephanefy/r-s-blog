@@ -62,6 +62,7 @@ const ListItem = styled.li`
 const PostInformation = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 2em;
 `
 
 const PostTitle = styled.h2`
@@ -117,9 +118,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
               <li key={_id} style={{listStyleType: 'none'}}>
                 <Link href="/posts/[slug]" as={`/posts/${slug.current}`}>
                 <ArticleCard>
-                  <div style={{marginRight:'2em', borderRadius:'20px'}}>
-                    <img src={urlFor(mainImage).fit("clip").width(300).height(200).url()} style={{borderRadius: '20px 0 0 20px'}} alt='no image'/>
-                  </div>
+                    <img src={urlFor(mainImage).width(350).height(270).fit("fillmax").url()} alt='no image'/>
                   <PostInformation>
                     <PostTitle>
                         <a>{title} {' '}</a>

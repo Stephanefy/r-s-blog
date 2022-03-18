@@ -7,7 +7,5 @@ export const IndexHeaderImg = styled.img`
     object-fit: cover;
     margin: 0 2em;
 
-    @media ${devices.mobileS} {
-        padding: 0 2em;
-    }
+ 
 `
