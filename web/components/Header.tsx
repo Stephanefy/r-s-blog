@@ -149,16 +149,13 @@ export default function Header() {
         windowWidth={width ? width : 0}
         isOpen={isOpen}
         >
-        <ul>
         {navLinks.map((link, index) => {
           return (
-            // eslint-disable-next-line react/jsx-key
               <Link key={link.id} href={link.path} passHref>
                 <ListItem key={link.id} className="nav-item">{link.name}</ListItem>
               </Link>
           );
         })}
-        </ul>
       </NavBar>
       <Hamburger 
         id="hamburger" 
