@@ -109,7 +109,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           {posts.length > 0 && posts.map(
           ({ _id, 
             title = '', 
-            slug, 
+            slug = '', 
             publishedAt = '', 
             mainImage, 
             articleDescription = ''}) =>

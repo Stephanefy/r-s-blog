@@ -104,14 +104,18 @@ const Bar = styled.span`
 `
 
 const navLinks = [
-    { name: "ホーム", 
+    { 
+     id: 1, 
+     name: "ホーム", 
      path: "/" 
     },
     {
+      id: 2,
       name: "à propos de moi",
       path: "/about",
     },
     {
+      id: 3,
       name: "Voyages",
       path: "/travel",
     },
@@ -120,6 +124,7 @@ const navLinks = [
     //   path: "/blog",
     // },
     {
+      id:4,
       name: "Contact",
       path: "#contact",
     },
@@ -144,16 +149,16 @@ export default function Header() {
         windowWidth={width ? width : 0}
         isOpen={isOpen}
         >
+        <ul>
         {navLinks.map((link, index) => {
           return (
             // eslint-disable-next-line react/jsx-key
-            <ul>
-              <Link href={link.path} passHref>
-                <ListItem key={index} className="nav-item">{link.name}</ListItem>
+              <Link key={link.id} href={link.path} passHref>
+                <ListItem key={link.id} className="nav-item">{link.name}</ListItem>
               </Link>
-            </ul>
           );
         })}
+        </ul>
       </NavBar>
       <Hamburger 
         id="hamburger" 
