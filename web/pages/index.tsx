@@ -90,6 +90,8 @@ function urlFor (source: SanityImageSource) {
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
 
+
+
   console.log(posts)
 
   return (
@@ -105,8 +107,9 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           <IndexHeaderImg src='/pexels-viviana-ceballos-3341574.jpg' alt="headerIndex" />
           <List>
           {posts.length > 0 && posts.map(
-          ({ _id, title = '', 
-            slug = '', 
+          ({ _id, 
+            title = '', 
+            slug, 
             publishedAt = '', 
             mainImage, 
             articleDescription = ''}) =>
@@ -142,14 +145,18 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
 
 export type Post = {
   userId: number;
-  id: number,
+  _id: number,
+  slug: any,
+  publishedAt: Date,
+  mainImage: string,
   title: string,
+  articleDescription: string,
   body: string
 }
 
 
 export const getStaticProps = async () => {
-    const posts = await client.fetch(groq`
+    const posts: Post[] = await client.fetch(groq`
     *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
   `)
 
