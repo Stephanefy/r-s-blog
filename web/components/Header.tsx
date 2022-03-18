@@ -79,14 +79,14 @@ const Hamburger = styled.div<HamburgerIsActive>`
       display: block;
       cursor: pointer;
 
-      & :nth-child(2) {
+      & :nth-of-type(2) {
         opacity: ${props => props.isOpen && 0};
       }
-      & :nth-child(1) {
+      & :nth-of-type(1) {
           transform: ${props => props.isOpen && 'translateY(8px) rotate(45deg)'};
       }
 
-      & :nth-child(3) {
+      & :nth-of-type(3) {
           transform: ${props => props.isOpen && 'translateY(-8px) rotate(-45deg)'};
       }
     }  
@@ -115,10 +115,10 @@ const navLinks = [
       name: "Voyages",
       path: "/travel",
     },
-    {
-      name: "Blog",
-      path: "/blog",
-    },
+    // {
+    //   name: "Blog",
+    //   path: "/blog",
+    // },
     {
       name: "Contact",
       path: "#contact",
@@ -134,8 +134,10 @@ export default function Header() {
 
   return (
     <HeaderNav>
-      <div className="brand">
-        <h2>Rina's blog</h2>
+      <div className="brand" style={{cursor:'pointer'}}>
+        <Link href="/">
+          <h2>Lilly's blog</h2>
+        </Link>
       </div>
       <NavBar 
         className="nav-menu"
