@@ -145,7 +145,9 @@ const ptComponents = {
 
 const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
-  console.log('post', post)
+
+
+
   const { 
     _id,
     _createdAt,
@@ -156,7 +158,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
     body = [],
     mainImage,
     likes
-  } = post
+  } = post ?? {}
 
   const [likesState, setLikesState] = useState(likes)
   
@@ -247,9 +249,10 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.params as IParams
   const post = await client.fetch(query, { slug })
+
   return {
     props: {
-      post
+      post,
     }
   }
 }
