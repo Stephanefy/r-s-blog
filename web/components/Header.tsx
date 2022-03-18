@@ -3,6 +3,7 @@ import {useState} from "react";
 import Link from "next/link";
 import styled from '@emotion/styled';
 import useWindowDimensions from '../hooks/useWindowDimension';
+import Hamburger from 'hamburger-react'
 
 interface HamburgerIsActive{
   windowWidth: number;
@@ -17,9 +18,7 @@ interface NavBar{
 const Container = styled.div`
   display: flex;
   width: 100%;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
 `;
 const HeaderNav = styled.header`
     display: flex;
@@ -31,8 +30,7 @@ const HeaderNav = styled.header`
 
     @media only screen and (max-width: 1170px) {
 
-      position: fixed
-      top: 5%;
+      position: fixed;
       width: 100%;
       background-color: #fff;
       justify-content: space-between;
@@ -84,26 +82,26 @@ const ListItem = styled.li`
         text-decoration: underline;
     }
 `
-const Hamburger = styled.div<HamburgerIsActive>`
-    display: none;
-    opacity: ${props => props.windowWidth  > 1170 ? 0 : 1};
-    @media only screen and (max-width: 1170px) {
-      display: block;
-      cursor: pointer;
+// const Hamburger = styled.div<HamburgerIsActive>`
+//     display: none;
+//     opacity: ${props => props.windowWidth  > 1170 ? 0 : 1};
+//     @media only screen and (max-width: 1170px) {
+//       display: block;
+//       cursor: pointer;
 
-      &:nth-of-type(2) {
-        opacity: ${props => props.isOpen && 0};
-      }
-      &:nth-of-type(1) {
-          transform: ${props => props.isOpen && 'translateY(8px) rotate(45deg)'};
-      }
+//       &: nth-of-type(2) {
+//         opacity: ${props => props.isOpen && 0};
+//       }
+//       &: nth-of-type(1) {
+//           transform: ${props => props.isOpen && 'translateY(8px) rotate(45deg)'};
+//       }
 
-      &:nth-of-type(3) {
-          transform: ${props => props.isOpen && 'translateY(-8px) rotate(-45deg)'};
-      }
-    }  
+//       &: nth-of-type(3) {
+//           transform: ${props => props.isOpen && 'translateY(-8px) rotate(-45deg)'};
+//       }
+//     }  
 
-`
+// `
 
 const Bar = styled.span`
     display: block;
@@ -172,16 +170,15 @@ export default function Header() {
             })}
           </NavBar>
         </div>
-        <Hamburger 
-          id="hamburger" 
-          windowWidth={width ? width : 0} 
-          isOpen={isOpen}
-          onClick={() => setIsOpen(!isOpen)}
-          >
-          <Bar className="bar"/>
-          <Bar className="bar"/>
-          <Bar className="bar"/>
-        </Hamburger>
+          { width && width < 1170 && (
+            <Hamburger 
+              toggled={isOpen}
+              toggle={setIsOpen}
+              >
+            </Hamburger>
+          )
+
+        }
       </HeaderNav>
     </Container>
   );
