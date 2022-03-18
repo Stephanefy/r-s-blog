@@ -109,7 +109,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           {posts.length > 0 && posts.map(
           ({ _id, 
             title = '', 
-            slug = '', 
+            slug, 
             publishedAt = '', 
             mainImage, 
             articleDescription = ''}) =>
@@ -143,20 +143,20 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
   )
 }
 
-export type Post = {
-  userId: number;
-  _id: number,
-  slug: any,
-  publishedAt: Date,
-  mainImage: string,
-  title: string,
-  articleDescription: string,
-  body: string
-}
+// export type Post = {
+//   userId: number;
+//   _id: number,
+//   slug: any,
+//   publishedAt: Date,
+//   mainImage: string,
+//   title: string,
+//   articleDescription: string,
+//   body: string
+// }
 
 
 export const getStaticProps = async () => {
-    const posts: Post[] = await client.fetch(groq`
+    const posts = await client.fetch(groq`
     *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
   `)
 
