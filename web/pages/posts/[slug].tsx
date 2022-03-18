@@ -246,13 +246,27 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: GetStaticPropsContext) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.params as IParams
-  const post = await client.fetch(query, { slug })
+  const post : SinglePost = await client.fetch(query, { slug })
   return {
     props: {
       post
     }
   }
 }
+
+
+export type SinglePost = {
+  _id: number,
+  _createdAt: Date,
+  title : string, 
+  name :string, 
+  categories : string[],
+  authorImage: string,
+  body : any,
+  mainImage: any,
+  likes: number
+}
+
 
 export default Post
 
