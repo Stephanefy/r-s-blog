@@ -182,7 +182,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
     <div style={{position: 'relative'}}>
       <Article>
         <h1>{title}</h1>
-        <span>By {name}</span>
+        <AuthorName>By {name}</AuthorName>
         {categories && (
           <TagList>
             テーマ
@@ -275,7 +275,9 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 
 export default Post
 
-
+const AuthorName = styled.span`
+  font-style: italic;
+`
 
 const likesListWrapper = styled.div`
   display: flex;

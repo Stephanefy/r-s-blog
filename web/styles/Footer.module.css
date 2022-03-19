@@ -1,0 +1,17 @@
+.footerContainer {
+    height: 8vh;
+    background-color: #ffc4d6;
+    box-shadow: rgba(0, 0, 0, 0.275) 2px 2px 20px;
+}
+
+.footerInner {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.copyRight {
+    font-weight: 300;
+}

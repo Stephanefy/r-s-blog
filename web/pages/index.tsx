@@ -9,6 +9,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { devices } from '../utils/devices';
 import {PortableText} from '@portabletext/react'
+import { BsSuitHeartFill } from 'react-icons/bs'
 
 import groq from 'groq'
 import client from '../client'
@@ -73,10 +74,11 @@ const PostTitle = styled.h2`
 
 const PostDate = styled.p`
   text-align: left;
-  font-size: 0.8em
+  font-size: 0.8em;
 `
 
 const PostSummary = styled.p`
+  font-weight: 300;
 
 `
 
@@ -113,7 +115,8 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
             slug, 
             publishedAt = '', 
             mainImage, 
-            articleDescription = ''}) =>
+            articleDescription = '',
+            likes}) =>
             slug && (
               <li key={_id} style={{listStyleType: 'none'}}>
                 <Link href="/posts/[slug]" as={`/posts/${slug.current}`}>
@@ -130,6 +133,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
                     <PostSummary>
                       {articleDescription} 
                     </PostSummary>
+                    <span style={{textAlign:'right'}}><BsSuitHeartFill color='red' size={15} />{" "}{likes}</span>
                   </PostInformation>
                 </ArticleCard>
                 </Link>{' '}
