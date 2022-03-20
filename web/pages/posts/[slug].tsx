@@ -108,6 +108,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import {PortableText} from '@portabletext/react'
 import styled from '@emotion/styled';
 import { devices } from 'utils/devices';
+import Image from 'next/image'
 
 
 import groq from 'groq'
@@ -131,7 +132,14 @@ const ptComponents = {
   types: {
     image: ({ value }) => {
       if (!value?.asset?._ref) {
-        return null
+        return (
+        <Image 
+          src='/public/image-blur-placeholder.png'
+          alt="NextJs Image"
+          width={800}
+          height={600}
+        
+        />) 
       }
       return (
         <img

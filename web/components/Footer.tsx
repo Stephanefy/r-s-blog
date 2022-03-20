@@ -16,7 +16,7 @@ const Footer = () => {
         <div className={styles.footerInner}>
             <div>
                 <h3 style={{margin: '0.2em 0'}}>Lilly's blog</h3>
-                <span className={styles.copyRight}>&copy;2022 りな伊藤</span>
+                <span className={styles.copyRight}>&copy;2022 りな</span>
             </div>
             <div>
                 <p>made with ❤️ by Stephanefy</p>

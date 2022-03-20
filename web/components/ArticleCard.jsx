@@ -13,7 +13,7 @@ export const ArticleCard = styled.div`
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.275) 2px 2px 20px;
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
     img {
       border-radius: 20px 0 0 20px;

@@ -62,6 +62,7 @@ const ListItem = styled.li`
 
 const PostInformation = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   padding: 2em;
 `
