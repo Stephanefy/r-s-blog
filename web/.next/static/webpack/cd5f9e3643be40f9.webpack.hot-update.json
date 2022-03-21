@@ -1,1 +1,0 @@
-{"c":["pages/posts/[slug]","webpack"],"r":["pages/index"],"m":["./components/ArticleCard.jsx","./components/Index.tsx","./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fhome%2Fsti%2Fmy-next-js-blog%2Fweb%2Fpages%2Findex.tsx!","./node_modules/next/head.js","./pages/index.tsx"]}

@@ -157,7 +157,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 
 
-
+  console.log(post)
   const { 
     _id,
     _createdAt,

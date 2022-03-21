@@ -1,4 +1,8 @@
 import styled from '@emotion/styled';
+import {PortableText, PortableTextComponents} from '@portabletext/react'
+import groq from 'groq'
+import { GetStaticPropsContext, InferGetStaticPropsType, GetStaticPaths } from "next";
+import client from '../client'
 
 
 
@@ -23,26 +27,48 @@ justify-content: start;
 align-items: center;
 `;
 
-export default function About() {
+
+
+
+
+
+export default function About({ authorBio }: InferGetStaticPropsType<typeof getStaticProps>) {
+
+
+    const [
+        bioContainer = [] 
+ ] = authorBio 
+
+
     return (
         <Container>
             <Main>
                 <h1>à propos de moi</h1>
-                <p>はじめまして。
-                りなと申します。東京都出身の２６歳女性です。
-                大学ではフランス語を専攻していたこともあり、
-                主にフランス語圏の方に日本語学習の手助けができればいいなと思っております。
-                現在パリに住んでいるので現地の方と時差なく授業ができます。
+                
+                <PortableText
+                    value={bioContainer.bio.map(b => b)}
+                />
 
-                ぜひ楽しみながら一緒に日本語を学びましょう！</p>
-
-                <p>現在私はプロの日本語教師ではありませんが、
-                お手伝いできることはたくさんあると思います。
-                現在パリで乳幼児対象ではありますが日本語を教えています
-
-                まずは日常的に日本語を話す機会を増やしませんか？</p>
 
             </Main>
         </Container>
     )
 }
+
+
+const query = groq`*[_type == "author"]{
+    bio,
+  }`
+  
+
+
+  export async function getStaticProps(context: GetStaticPropsContext) {
+    // It's important to default the slug so that it doesn't return "undefined"
+    const authorBio = await client.fetch(query)
+  
+    return {
+      props: {
+        authorBio,
+      }
+    }
+  }
