@@ -75,7 +75,7 @@ const ListItem = styled.li`
     margin:0 2em;
     font-size: 1.25em;
 
-    &:nth-of-type(3) {
+    &:nth-of-type(2) {
         margin: 0 0 0 2em;
     }
     &:hover {
@@ -124,11 +124,11 @@ const navLinks = [
       name: "à propos de moi",
       path: "/about",
     },
-    {
-      id: 3,
-      name: "旅行",
-      path: "/travel",
-    },
+    // {
+    //   id: 3,
+    //   name: "旅行",
+    //   path: "/travel",
+    // },
     // {
     //   name: "Blog",
     //   path: "/blog",
